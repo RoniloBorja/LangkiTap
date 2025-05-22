@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LangkiTap - University Merchandise</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">LangkiTap</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Catalog</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="{{ url_for('login') }}"><button class="login-btn">Login</button></a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-text">
+            <h1>LangkiTap</h1>
+            <p>Your one-tap shop for university merchandise</p>
+            <a href="#" class="btn">View Catalog</a>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature">
+            <div class="text">
+                <h2>Quality Apparel and Goods</h2>
+                <p>From T-shirts, caps, pens, jackets, and more, made with quality that will last.</p>
+                <a href="#" class="btn red">View Catalog</a>
+                <a href="#" class="btn yellow">Find out more</a>
+            </div>
+            <div class="image">
+                <img src="{{ url_for('static', filename='img1.jpg') }}" alt="Merchandise image 1">
+            </div>
+        </div>
+
+        <div class="feature reverse">
+            <div class="image">
+                <img src="{{ url_for('static', filename='img2.jpg') }}" alt="Merchandise image 2">
+            </div>
+            <div class="text">
+                <h2>Fast & Easy Pick-up</h2>
+                <p>Pick up your orders at the Langkit University Shop</p>
+                <a href="#" class="btn red">Order now</a>
+                <a href="#" class="btn yellow">Find out more</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

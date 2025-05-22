@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard - LangkiTap</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .admin-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .admin-section {
+            margin-bottom: 40px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fafafa;
+        }
+
+        .admin-section h2 {
+            margin-bottom: 10px;
+            color: #b70000;
+        }
+
+        .logout-btn {
+            float: right;
+            margin-top: -60px;
+            background-color: #b70000;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .logout-btn:hover {
+            background-color: #900000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-container">
+        <h1>Welcome, Admin</h1>
+        <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+
+        <div class="admin-section">
+            <h2>Inventory</h2>
+            <p>Manage current stock of merchandise (T-shirts, caps, etc.).</p>
+            <!-- You can add a table or form here later -->
+        </div>
+
+        <div class="admin-section">
+            <h2>Orders</h2>
+            <p>Track and manage incoming orders from customers.</p>
+        </div>
+
+        <div class="admin-section">
+            <h2>Users</h2>
+            <p>View or manage user information and access levels.</p>
+        </div>
+
+        <div class="admin-section">
+            <h2>Catalog</h2>
+            <p>Add, edit, or remove products shown on the main catalog page.</p>
+            <a href="{{ url_for('admin_catalog') }}" class="btn red">Manage Catalog</a>
+        </div>
+    </div>
+
+</body>
+</html>
