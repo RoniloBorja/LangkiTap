@@ -4,29 +4,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="static/vars.css">
-<link rel="stylesheet" href="static/style2.css">
-
-  
-  
+  <link rel="stylesheet" href="{{ url_for('static', filename='vars.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
   <style>
-   a,
-   button,
-   input,
-   select,
-   h1,
-   h2,
-   h3,
-   h4,
-   h5,
-   * {
+   a, button, input, select, h1, h2, h3, h4, h5, * {
        box-sizing: border-box;
        margin: 0;
        padding: 0;
        border: none;
        text-decoration: none;
        background: none;
-   
        -webkit-font-smoothing: antialiased;
    }
    
@@ -35,179 +22,101 @@
        margin: 0;
        padding: 0;
    }
-   </style>
-  <title>Document</title>
+  </style>
+  <title>LangkiTap Shop</title>
 </head>
 <body>
   <div class="catalog-for-user">
     <div class="catalog">Catalog</div>
     <div class="navigation-footer">
+      <!-- Social Icons Section (Keep as-is) -->
       <div class="social-icons">
         <div class="buttons-icon">
-          <img class="icon" src="icon0.svg" />
+          <img class="icon" src="{{ url_for('static', filename='icon0.svg') }}" />
         </div>
         <div class="buttons-icon">
-          <img class="icon2" src="icon1.svg" />
+          <img class="icon2" src="{{ url_for('static', filename='icon1.svg') }}" />
         </div>
         <div class="buttons-icon">
-          <img class="icon3" src="static/icon2.svg" />
+          <img class="icon3" src="{{ url_for('static', filename='icon2.svg') }}" />
         </div>
         <div class="buttons-icon">
-          <img class="icon4" src="static/icon3.svg" />
+          <img class="icon4" src="{{ url_for('static', filename='icon3.svg') }}" />
         </div>
       </div>
-      <img class="rectangle-42" src="static/rectangle-420.svg" />
+      <img class="rectangle-42" src="{{ url_for('static', filename='rectangle-420.svg') }}" />
       <div class="divider"></div>
       <div class="rectangle-4"></div>
       <div class="checkout">Checkout</div>
-      <img class="group-1" src="static/group-10.svg" />
+      <img class="group-1" src="{{ url_for('static', filename='group-10.svg') }}" />
       <div class="x-mug-2-cup-e-tshirt-xxx">
-        x mug
-        <br />
-        2 cup
-        <br />
-        e tshirt xxx
+        <!-- Cart Items Will Be Dynamically Inserted Here -->
+        {% for item in cart_items %}
+          {{ item.name }}<br>
+        {% endfor %}
       </div>
-      <div class="order-total">order total:</div>
+      <div class="order-total">order total: ${{ "%.2f"|format(total) }}</div>
       <div class="frame-1321317461"></div>
     </div>
+
+    <!-- Product Grid 1 -->
     <div class="card-grid">
-      <div class="card">
-        <img class="image" src="static/image0.png" />
+      {% for product in products[0:6] %}
+      <div class="
+        {% if loop.index == 5 %}card2
+        {% elif loop.index == 6 %}card3
+        {% else %}card{% endif %}
+      ">
+        <img class="{% if loop.index == 4 %}image2{% else %}image{% endif %}" 
+             src="{{ url_for('static', filename='uploads/' + product.image) if product.image else url_for('static', filename='image_placeholder.png') }}" />
         <div class="copy">
-          <div class="product">Product</div>
-          <div class="description-of-fourth-product">
-            Description of fourth product
+          <div class="product">{{ product.name }}</div>
+            {% set cycle_list = ['fourth', 'fifth', 'sixth', 'first', 'second', 'third'] %}
+            <div class="description-of-{{ cycle_list[(loop.index0) % 6] }}-product">
+            {{ product.description }}
           </div>
-          <div class="_10-99">$10.99</div>
+          <div class="_10-99">${{ "%.2f"|format(product.price|float) }}</div>
           <div class="add-to-cart">+ Add to cart</div>
         </div>
       </div>
-      <div class="card">
-        <img class="image" src="static/image1.png" />
-        <div class="copy">
-          <div class="product">Product</div>
-          <div class="description-of-fifth-product">
-            Description of fifth product
-          </div>
-          <div class="_10-99">$10.99</div>
-        </div>
-      </div>
-      <div class="card">
-        <img class="image" src="static/image2.png" />
-        <div class="copy">
-          <div class="product">Product</div>
-          <div class="description-of-sixth-product">
-            Description of sixth product
-          </div>
-          <div class="_10-99">$10.99</div>
-        </div>
-      </div>
-      <div class="card">
-        <img class="image2" src="static/image3.png" />
-        <div class="copy">
-          <div class="product">Product</div>
-          <div class="description-of-first-product">
-            Description of first product
-          </div>
-          <div class="_10-99">$10.99</div>
-        </div>
-      </div>
-      <div class="card2">
-        <img class="image" src="static/image4.png" />
-        <div class="copy">
-          <div class="product">Product</div>
-          <div class="description-of-second-product">
-            Description of second product
-          </div>
-          <div class="_10-99">$10.99</div>
-        </div>
-      </div>
-      <div class="card3">
-        <img class="image" src="static/image5.png" />
-        <div class="copy">
-          <div class="product">Product</div>
-          <div class="description-of-third-product">
-            Description of third product
-          </div>
-          <div class="_10-99">$10.99</div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
+
+    <!-- Product Grid 2 -->
     <div class="card-grid2">
+      {% for product in products[6:12] %}
       <div class="card">
-        <img class="image" src="static/image6.png" />
+        <img class="image" 
+             src="{{ url_for('static', filename='uploads/' + product.image) if product.image else url_for('static', filename='image_placeholder.png') }}" />
         <div class="copy">
-          <div class="product">Product</div>
-          <div class="description-of-first-product">
-            Description of first product
+          <div class="product">{{ product.name }}</div>
+            {% set cycle_list = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth'] %}
+            <div class="description-of-{{ cycle_list[(loop.index0) % 6] }}-product">
+            {{ product.description }}
           </div>
-          <div class="_10-99">$10.99</div>
+            <div class="_10-99">${{ "%.2f"|format(product.price|float) }}</div>
+          <div class="add-to-cart">+ Add to cart</div>
         </div>
       </div>
-      <div class="card">
-        <img class="image" src="static/image7.png" />
-        <div class="copy">
-          <div class="product">Product</div>
-          <div class="description-of-second-product">
-            Description of second product
-          </div>
-          <div class="_10-99">$10.99</div>
-        </div>
-      </div>
-      <div class="card">
-        <img class="image" src="static/image8.png" />
-        <div class="copy">
-          <div class="product">Product</div>
-          <div class="description-of-third-product">
-            Description of third product
-          </div>
-          <div class="_10-99">$10.99</div>
-        </div>
-      </div>
-      <div class="card">
-        <img class="image" src="static/image9.png" />
-        <div class="copy">
-          <div class="product">Product</div>
-          <div class="description-of-fourth-product">
-            Description of fourth product
-          </div>
-          <div class="_10-99">$10.99</div>
-        </div>
-      </div>
-      <div class="card">
-        <img class="image" src="static/image10.png" />
-        <div class="copy">
-          <div class="product">Product</div>
-          <div class="description-of-fifth-product">
-            Description of fifth product
-          </div>
-          <div class="_10-99">$10.99</div>
-        </div>
-      </div>
-      <div class="card">
-        <img class="image" src="static/image11.png" />
-        <div class="copy">
-          <div class="product">Product</div>
-          <div class="description-of-sixth-product">
-            Description of sixth product
-          </div>
-          <div class="_10-99">$10.99</div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
+
+    <!-- Navigation -->
     <div class="navigation">
       <div class="items">
-        <div class="home">Home</div>
-        <div class="catalog2">Catalog</div>
+        <div class="home"><a href="{{ url_for('home') }}">Home</a></div>
+        <div class="catalog2"><a href="{{ url_for('shop') }}">Catalog</a></div>
         <div class="about-us">About Us</div>
         <div class="button">
-          <div class="login">Login</div>
+          <div class="login"><a href="{{ url_for('login') }}">Login</a></div>
         </div>
       </div>
       <div class="langki-tap">LangkiTap</div>
     </div>
   </div>
-  
+
+  <script>
+    // Add your cart functionality JavaScript here
+  </script>
 </body>
 </html>

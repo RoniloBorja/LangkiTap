@@ -6,12 +6,13 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = "your_secret_key"
 
-# File upload setup
-app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'static', 'uploads')  # Changed to absolute path
+# File upload setup (absolute path)
+app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'static', 'uploads')
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # Database setup
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///catalog.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Avoid warning
 db = SQLAlchemy(app)
 
 # Product model
@@ -20,11 +21,11 @@ class Product(db.Model):
     name = db.Column(db.String(100), nullable=False)
     category = db.Column(db.String(50))
     stock = db.Column(db.Integer)
-    price = db.Column(db.String(10))
+    price = db.Column(db.Float)
     description = db.Column(db.String(255))
     image = db.Column(db.String(255))
 
-# Initialize DB
+# Initialize DB (create tables)
 with app.app_context():
     db.create_all()
 
@@ -35,9 +36,9 @@ def home():
 @app.route("/shop")
 def shop():
     products = Product.query.all()
-    return render_template("shop.html", products=products)
+    total = sum(float(product.price) for product in products if product.price is not None)
+    return render_template("shop.html", products=products, total=total) 
 
-# Update the login route
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -54,7 +55,6 @@ def login():
             return render_template("login.html", error="Invalid credentials")
     return render_template("login.html")
 
-# Update the logout route
 @app.route("/logout")
 def logout():
     session.pop("admin", None)
@@ -79,10 +79,11 @@ def add_product():
     if not session.get("admin"):
         return redirect(url_for("login"))
 
+    # Get and convert form data
     name = request.form["name"]
     category = request.form["category"]
     stock = int(request.form["stock"])
-    price = request.form["price"]
+    price = float(request.form["price"])
     description = request.form["description"]
 
     image_file = request.files.get("image")
@@ -91,7 +92,6 @@ def add_product():
         image_filename = secure_filename(image_file.filename)
         image_path = os.path.join(app.config['UPLOAD_FOLDER'], image_filename)
         image_file.save(image_path)
-        print("Saved to:", image_path)
 
     product = Product(
         name=name,
@@ -114,7 +114,7 @@ def edit_product(product_id):
         product.name = request.form["name"]
         product.category = request.form["category"]
         product.stock = int(request.form["stock"])
-        product.price = request.form["price"]
+        product.price = float(request.form["price"])
         product.description = request.form["description"]
 
         image_file = request.files.get("image")
