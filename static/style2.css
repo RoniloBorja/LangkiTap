@@ -110,14 +110,14 @@ html, body {
 .catalog2,
 .about-us {
   position: relative;
-  padding: 8px 12px;
+  padding: 0px 0px;
   transition: all 0.3s ease;
 }
 
 .home:hover,
 .catalog2:hover,
 .about-us:hover {
-  text-decoration: underline;
+  border-bottom: 2px solid #ffffff;
   text-underline-offset: 4px;
 }
 
@@ -137,13 +137,13 @@ html, body {
 }
 
 .button:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.300);
 }
 
 /* ===== Login Link Specific Styles ===== */
 .login {
-  font-size: 16px;
-  padding: 2px 5px;
+  font-size: 20px;
+  padding: 0px 0px;
 }
 
 /* ===== Active State Indicators ===== */
