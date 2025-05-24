@@ -244,19 +244,20 @@ html, body {
   height: 328px;
   object-fit: cover;
   border-radius: 6px;
+  position: relative;
 }
 
 .frame-1321317465 {
   margin-top: 10px;
 }
 
-.long-sleeved-shirt,
-.crimson-fade,
-._399 {
+.product-name,
+.product-desc,
+.product-price {
   font-family: "Inter", sans-serif;
   font-size: 24px;
   font-weight: 500;
-  margin: 5px 0;
+  margin: 10px 0;
 }
 
 .add-to-cart {
@@ -266,6 +267,9 @@ html, body {
   margin-top: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
 }
 
 .add-to-cart:hover {
@@ -323,6 +327,8 @@ html, body {
   width: 1000px;
   height: 135px;
   position: relative;
+  margin-top: 4px;
+  border-radius: 8px;
 }
 
 .checkout-button {
@@ -387,7 +393,7 @@ html, body {
 }
 
 .cart-items-wrapper {
-  max-height: 80px;
+  max-height: 90px;
   overflow-y: auto;
   margin-top: 5px;
 }
