@@ -721,3 +721,24 @@ html, body {
   color: #000;
   padding-left: 20px;
 }
+
+.cart-item {
+  position: relative;
+  padding-right: 20px;
+  margin-bottom: 5px;
+}
+
+.remove-item {
+  position: absolute;
+  right: 0;
+  color: #a51d21;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0 5px;
+}
+
+.remove-item:hover {
+  color: #ff0000;
+  background: rgba(0,0,0,0.05);
+  border-radius: 50%;
+}
