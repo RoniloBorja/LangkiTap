@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
+from collections import defaultdict
 
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = "your_secret_key"
@@ -37,7 +38,13 @@ def home():
 def shop():
     products = Product.query.all()
     total = sum(float(product.price) for product in products if product.price is not None)
-    return render_template("shop.html", products=products, total=total) 
+
+    # Group products by category
+    categorized = defaultdict(list)
+    for product in products:
+        categorized[product.category or "Uncategorized"].append(product)
+
+    return render_template("shop.html", categorized_products=categorized, total=total)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
