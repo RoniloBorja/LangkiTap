@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - LangkiTap</title>
+     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='aboutstyle.css') }}">
+</head>
+<body>
+    <div class="about-langkit-v-4-3-3">
+        <div class="navigation-bar">
+            <div class="langki-tap">LangkiTap</div>
+            <div class="items">
+                <a href="{{ url_for('home') }}" class="home">Home</a>
+                <a href="{{ url_for('shop') }}" class="catalog">Catalog</a>
+                <a href="{{ url_for('about') }}" class="about-us">About Us</a>
+                <div class="button">
+                    <a href="{{ url_for('login') }}" class="login">Login</a>
+                </div>
+            </div>
+        </div>
+        <img class="image" src="{{ url_for('static', filename='langkit-aboutus.png') }}" />
+      <div class="header-about-us">
+        <div class="about-us2">About us</div>
+      </div>
+      <div class="body">
+        <div class="description">
+          <div class="msu-iit-langkit-university-shop">
+            MSU-IIT Langkit University Shop
+          </div>
+          <div class="paragraph">
+            Welcome to Langkit, the official merchandise store of Mindanao State
+            University – Iligan Institute of Technology (MSU-IIT). Rooted in the
+            spirit of excellence and unity, Langkit celebrates the vibrant
+            culture, pride, and identity of the MSU-IIT community.
+            <br />
+            <br />
+            Our name, &quot;Langkit&quot;, is inspired by the intricate Maranao
+            woven patterns symbolizing creativity, heritage, and resilience—values
+            that MSU-IIT proudly upholds. From apparel and accessories to
+            stationery and collectibles, each item in our collection is
+            thoughtfully designed to represent the true spirit of a true IITian.
+            <br />
+            <br />
+            Whether you&#039;re a student, alumnus, faculty member, or supporter,
+            Langkit offers more than just merchandise—it’s a piece of home, a mark
+            of belonging, and a statement of pride. Wear your colors. Carry your
+            legacy. Live the Langkit.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="items2">
+        <div class="topic">Topic</div>
+        <div class="page">Page</div>
+        <div class="page">Page</div>
+        <div class="page">Page</div>
+      </div>
+      <div class="items3">
+        <div class="topic">Topic</div>
+        <div class="page">Page</div>
+        <div class="page">Page</div>
+        <div class="page">Page</div>
+      </div>
+      <div class="items4">
+        <div class="topic">Topic</div>
+        <div class="page">Page</div>
+        <div class="page">Page</div>
+        <div class="page">Page</div>
+      </div>
+      <div class="social-icons">
+        <div class="buttons-icon">
+                    <img class="icon" src="{{ url_for('static', filename='icon0.svg') }}" />
+                </div>
+                <div class="buttons-icon">
+                    <img class="icon" src="{{ url_for('static', filename='icon1.svg') }}" />
+                </div>
+                <div class="buttons-icon">
+                    <img class="icon" src="{{ url_for('static', filename='icon2.svg') }}" />
+                </div>
+                <div class="buttons-icon">
+                    <img class="icon" src="{{ url_for('static', filename='icon3.svg') }}" />
+                </div>
+      </div>
+      <div class="langki-tap2">LangkiTap</div>
+      <div class="divider"></div>
+    </div>
+  </div>
+    </div>
+</body>
+</html>

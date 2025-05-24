@@ -1,3 +1,9 @@
+/* ===== Base Styles ===== */
+.user-catalog-v-4-3,
+.user-catalog-v-4-3 * {
+  box-sizing: border-box;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -15,21 +21,10 @@ html, body {
   padding-bottom: 20px;
 }
 
-.navigation-footer {
-  position: sticky;
-  bottom: 0;
-  z-index: 100;
-  width: 100%;
-}
-
-
-.user-catalog-v-4-3,
-.user-catalog-v-4-3 * {
-  box-sizing: border-box;
-}
+/* ===== Header Styles ===== */
 .user-catalog-v-4-3 {
   background: #ffffff;
-  padding: 46px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -39,15 +34,15 @@ html, body {
   overflow: hidden;
 }
 .catalog {
-  color: #a51d21;
+ color: #a51d21;
   text-align: left;
-  font-family: "Inter-Bold", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 48px;
   line-height: 150%;
   font-weight: 700;
   position: absolute;
-  left: 38px;
-  top: 181px;
+  left: 40px;
+  top: 120px;
 }
 .header-and-title {
   display: flex;
@@ -60,18 +55,26 @@ html, body {
   height: 222px;
   position: relative;
 }
+/* ===== Navigation Container ===== */
 .navigation {
-  background: #a51d21;
+ background: #a51d21;
+  padding: 0px 0px 0px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   align-self: stretch;
   flex-shrink: 0;
   height: 85px;
   position: relative;
   overflow: hidden;
 }
+
+/* ===== Navigation Items Container ===== */
 .items {
   display: flex;
   flex-direction: row;
-  gap: var(--spacing-m, 48px);
+  gap: 48px; /* Using fixed value instead of variable */
   align-items: center;
   justify-content: flex-end;
   height: 96px;
@@ -79,76 +82,85 @@ html, body {
   right: 80px;
   top: -5px;
 }
-.home {
+
+/* ===== Base Navigation Link Styles ===== */
+.navigation a {
   color: #ffffff;
-  text-align: left;
-  font-family: var(--body-text-font-family, "Inter-Medium", sans-serif);
-  font-size: var(--body-text-font-size, 20px);
-  line-height: var(--body-text-line-height, 150%);
-  font-weight: var(--body-text-font-weight, 500);
-  position: relative;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  line-height: 150%;
+  font-weight: 500;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
 }
-.catalog2 {
-  color: #ffffff;
-  text-align: left;
-  font-family: var(--body-text-font-family, "Inter-Medium", sans-serif);
-  font-size: var(--body-text-font-size, 20px);
-  line-height: var(--body-text-line-height, 150%);
-  font-weight: var(--body-text-font-weight, 500);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+
+/* Specific link states */
+.navigation a:link,
+.navigation a:visited,
+.navigation a:hover,
+.navigation a:active,
+.navigation a:focus {
+  color: #ffffff !important;
+  text-decoration: none !important;
 }
+
+/* ===== Individual Navigation Items ===== */
+.home,
+.catalog2,
 .about-us {
-  color: #ffffff;
-  text-align: left;
-  font-family: var(--body-text-font-family, "Inter-Medium", sans-serif);
-  font-size: var(--body-text-font-size, 20px);
-  line-height: var(--body-text-line-height, 150%);
-  font-weight: var(--body-text-font-weight, 500);
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  padding: 0px 0px;
+  transition: all 0.3s ease;
 }
+
+.home:hover,
+.catalog2:hover,
+.about-us:hover {
+  border-bottom: 2px solid #ffffff;
+  text-underline-offset: 4px;
+}
+
+/* ===== Login Button Container ===== */
 .button {
   border-radius: 8px;
-  border-style: solid;
-  border-color: #ffffff;
-  border-width: 2px;
-  padding: 14px 24px 14px 24px;
+  border: 2px solid #ffffff;
+  padding: 14px 24px;
   display: flex;
-  flex-direction: row;
   gap: 8px;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   position: relative;
-  box-shadow: var(
-    --button-shadow-box-shadow,
-    0px 1px 2px 0px rgba(0, 0, 0, 0.05)
-  );
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 }
+
+.button:hover {
+  background: rgba(255, 255, 255, 0.300);
+}
+
+/* ===== Login Link Specific Styles ===== */
 .login {
-  color: #ffffff;
-  text-align: left;
-  font-family: var(--small-text-font-family, "Inter-Medium", sans-serif);
-  font-size: var(--small-text-font-size, 16px);
-  line-height: var(--small-text-line-height, 150%);
-  font-weight: var(--small-text-font-weight, 500);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  font-size: 20px;
+  padding: 0px 0px;
 }
+
+/* ===== Active State Indicators ===== */
+/* Add this if you want to highlight current page */
+.home[aria-current="page"],
+.catalog2[aria-current="page"],
+.about-us[aria-current="page"] {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+
+
 .langki-tap {
   color: #ffffff;
   text-align: left;
-  font-family: "Outfit-Bold", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-size: 48px;
   line-height: 150%;
   font-weight: 700;
@@ -161,6 +173,9 @@ html, body {
   align-items: center;
   justify-content: flex-start;
 }
+
+
+/* ===== Product Grid Styles ===== */
 .body {
   padding: 0px 69px 0px 69px;
   display: flex;
@@ -170,483 +185,35 @@ html, body {
   justify-content: flex-start;
   align-self: stretch;
   flex-shrink: 0;
-  height: 2446px;
   position: relative;
 }
-.first-category {
-  padding: 0px 4px 0px 4px;
-  display: flex;
-  flex-direction: column;
-  gap: 39px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  height: 743.79px;
-  position: relative;
-}
-.shirts {
-  color: #000000;
-  text-align: left;
-  font-family: "Inter-Bold", sans-serif;
-  font-size: 32px;
-  line-height: 150%;
-  font-weight: 700;
-  position: relative;
-  align-self: stretch;
-}
-.frame-1321317467 {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-}
-.frame-1321317466 {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  width: 1168px;
-  position: relative;
-}
-.product-card-by-ralph {
-  display: flex;
-  flex-direction: row;
-  gap: 37px;
-  align-items: center;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-}
-.product-card-by-ralph2 {
-  background: #d7d7d7;
-  padding: 15px;
-  flex-shrink: 0;
-  width: 358px;
-  height: 578.79px;
-  position: relative;
-  aspect-ratio: 358/578.79;
-}
-._494604289-122226882536199958-5278524647495062158-n-1 {
-  width: 328px;
-  height: 328px;
-  position: absolute;
-  left: 15px;
-  top: 15px;
-  object-fit: cover;
-  aspect-ratio: 1;
-}
-.frame-1321317465 {
-  width: 328px;
-  height: 205px;
-  position: absolute;
-  left: 15px;
-  top: 357px;
-}
-.frame-1321317464 {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 328px;
-  height: 114px;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-.long-sleeved-shirt {
-  color: #000000;
-  text-align: left;
-  font-family: "Inter-Medium", sans-serif;
-  font-size: 24px;
-  line-height: 150%;
-  font-weight: 500;
-  position: relative;
-  align-self: stretch;
-  height: 61px;
-}
-.crimson-fade {
-  margin: -24px 0 0 0;
-  color: #000000;
-  text-align: left;
-  font-family: "Inter-Medium", sans-serif;
-  font-size: 24px;
-  line-height: 150%;
-  font-weight: 500;
-  position: relative;
-  align-self: stretch;
-  height: 61px;
-}
-._399 {
-  margin: -24px 0 0 0;
-  color: #000000;
-  text-align: left;
-  font-family: "Inter-Medium", sans-serif;
-  font-size: 24px;
-  line-height: 150%;
-  font-weight: 500;
-  position: relative;
-  align-self: stretch;
-  height: 61px;
-}
-.frame-1321317458 {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  align-items: center;
-  justify-content: flex-start;
-  height: 25px;
-  position: absolute;
-  left: 0px;
-  top: 128px;
-}
-.ellipse-1 {
-  background: #650e20;
-  border-radius: 50%;
-  flex-shrink: 0;
-  width: 46px;
-  height: 46px;
-  position: relative;
-}
-.ellipse-2 {
-  background: #de7188;
-  border-radius: 50%;
-  flex-shrink: 0;
-  width: 46px;
-  height: 46px;
-  position: relative;
-}
-.ellipse-3 {
-  background: #1b161c;
-  border-radius: 50%;
-  flex-shrink: 0;
-  width: 46px;
-  height: 46px;
-  position: relative;
-}
-.ellipse-4 {
-  background: #d9d2c2;
-  border-radius: 50%;
-  flex-shrink: 0;
-  width: 46px;
-  height: 46px;
-  position: relative;
-}
-.add-to-cart {
-  color: #a51d21;
-  text-align: left;
-  font-family: "Inter-Medium", sans-serif;
-  font-size: 24px;
-  line-height: 150%;
-  font-weight: 500;
-  position: absolute;
-  left: 150px;
-  top: 167.39px;
-  width: 178px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.scroll-bar-visual {
-  background: #d9d9d9;
-  border-radius: 10px;
-  border-style: solid;
-  border-color: #000000;
-  border-width: 1px;
-  padding: 5px 7px 5px 7px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  height: 33px;
-  position: relative;
-}
-.rectangle-45 {
-  background: #989898;
-  border-radius: 10px;
-  border-style: solid;
-  border-color: #000000;
-  border-width: 1px;
-  flex-shrink: 0;
-  width: 380px;
-  height: 23px;
-  position: relative;
-}
-.second-category {
-  display: flex;
-  flex-direction: column;
-  gap: 39px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-}
-.still-shirts {
-  color: #000000;
-  text-align: left;
-  font-family: "Inter-Bold", sans-serif;
-  font-size: 32px;
-  line-height: 150%;
-  font-weight: 700;
-  position: relative;
-  align-self: stretch;
-}
-.third-category {
-  display: flex;
-  flex-direction: column;
-  gap: 39px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-}
-.even-more-shirts {
-  color: #000000;
-  text-align: left;
-  font-family: "Inter-Bold", sans-serif;
-  font-size: 32px;
-  line-height: 150%;
-  font-weight: 700;
-  position: relative;
-  align-self: stretch;
-}
-.navigation-footer {
-  background: #ffffff;
-  padding: 10px 15px 10px 15px;
-  display: flex;
-  flex-direction: row;
-  row-gap: 28px;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  flex-shrink: 0;
-  width: 1440px;
-  height: 100px;
-  position: relative;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
-}
-.social-icons {
-  padding: 90px 15px var(--corner-large-increased, 20px) 19px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-shrink: 0;
-  width: 227px;
-  position: relative;
-}
-.buttons-icon {
-  border-radius: 4px;
-  padding: 8px;
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  position: relative;
-}
-.icon {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  left: 8px;
-  top: 8px;
-  overflow: visible;
-}
-.icon2 {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  left: 8px;
-  top: 8px;
-  overflow: visible;
-}
-.icon3 {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  left: 8px;
-  top: 8px;
-  overflow: visible;
-}
-.icon4 {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  left: 8px;
-  top: 8px;
-  overflow: visible;
-}
-.checkout {
-  border-style: solid;
-  border-color: rgba(0, 0, 0, 0.2);
-  border-width: 1px;
-  flex-shrink: 0;
-  width: 1113px;
-  height: 117px;
-  position: relative;
-}
-.checkout-button {
-  background: #a51d21;
-  border-radius: 45px;
-  width: 170px;
-  height: 45px;
-  position: absolute;
-  left: 936px;
-  top: 61px;
-}
-.basket-alt-3 {
-  width: 50px;
-  height: 43px;
-  position: absolute;
-  left: 7px;
-  top: 1px;
-  overflow: visible;
-}
-.checkout2 {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Outfit-Bold", sans-serif;
-  font-size: 20px;
-  line-height: 150%;
-  font-weight: 700;
-  position: absolute;
-  left: 66px;
-  top: 2px;
-  width: 122px;
-  height: 41px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.order-total {
-  color: rgba(0, 0, 0, 0.7);
-  text-align: left;
-  font-family: "UbuntuSans-Medium", sans-serif;
-  font-size: 20px;
-  line-height: 150%;
-  font-weight: 500;
-  position: absolute;
-  left: 706px;
-  top: 76px;
-  width: 210px;
-  white-space: nowrap; /* This prevents line breaks */
-  display: flex; /* Keeps text and price aligned */
-  align-items: center; /* Vertically centers the content */
-}
-
-.order-total span {
-  margin-left: 5px; /* Small space after the dollar sign */
-}
-.x-mug-2-cup-n-tshirt-xxx {
-  color: rgba(0, 0, 0, 0.7);
-  text-align: left;
-  font-family: "Inter-Italic", sans-serif;
-  font-size: 20px;
-  line-height: 100%;
-  letter-spacing: -0.04em;
-  font-weight: 400;
-  font-style: italic;
-  position: absolute;
-  left: 11px;
-  top: 2px;
-  width: 695px;
-  height: 117px;
-}
-
-
-
-/* ===== Horizontal Category Scroll Enhancements ===== */
 
 .category-section {
-  margin: 40px 0;
+  width: 100%;
+  margin-bottom: 0px;
 }
 
 .category-title {
+  font-family: "Outfit", sans-serif;
   font-size: 32px;
   font-weight: 700;
-  margin-bottom: 10px;
-  color: #000;
-}
-
-.scroll-container {
-  display: flex;
-  overflow-x: auto;
-  gap: 20px;
-  scroll-behavior: smooth;
-  padding-bottom: 10px;
-}
-
-.scroll-container::-webkit-scrollbar {
-  height: 10px;
-}
-
-.scroll-container::-webkit-scrollbar-thumb {
-  background: #a51d21;
-  border-radius: 5px;
-}
-
-.scroll-container::-webkit-scrollbar-track {
-  background: #eee;
-}
-
-.product-card {
-  min-width: 300px;
-  background: #fff;
-  border-radius: 8px;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.product-card img {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-.product-name {
-  font-size: 20px;
-  margin-top: 0.5rem;
-}
-
-.product-price {
+  margin-bottom: 20px;
   color: #a51d21;
-  font-weight: bold;
-  margin: 0.5rem 0;
+  padding-left: 20px;
 }
 
-.add-to-cart {
-  color: #a51d21;
-  cursor: pointer;
-  font-weight: 500;
-}
-/* Horizontal category scroll styling */
 .scroll-wrapper {
   overflow-x: auto;
   padding-bottom: 10px;
+  width: 100%;
 }
 
-.scroll-row {
+.scrollable-row {
   display: flex;
   flex-direction: row;
   gap: 20px;
   min-height: 600px;
+  padding: 0 20px;
 }
 
 .scroll-wrapper::-webkit-scrollbar {
@@ -664,7 +231,7 @@ html, body {
 
 .product-card-by-ralph2 {
   flex: 0 0 auto;
-  background: #d7d7d7;
+  background: #eeeeee;
   padding: 15px;
   width: 358px;
   height: 578.79px;
@@ -672,52 +239,262 @@ html, body {
   border-radius: 10px;
 }
 
-/* Ensure the scrollable container takes full width */
-.scroll-wrapper {
+.product-card-by-ralph2 img {
+  width: 328px;
+  height: 328px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.frame-1321317465 {
+  margin-top: 10px;
+}
+
+.long-sleeved-shirt,
+.crimson-fade,
+._399 {
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin: 5px 0;
+}
+
+.add-to-cart {
+  color: #a51d21;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-to-cart:hover {
+  text-decoration: underline;
+}
+
+/* ===== Footer & Cart Styles ===== */
+.navigation-footer {
+  background: #ffffff;
+  padding: 0px;
+  position: sticky;
+  bottom: 0;
   width: 100%;
-  overflow-x: auto;
-  padding-bottom: 10px;
-}
-
-/* Flex container for the product cards */
-.scrollable-row {
+  box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  height: 140px;
   display: flex;
-  gap: 20px;
-  padding: 10px 0;
-  width: max-content; /* Allows the container to expand beyond viewport */
-  min-height: 600px; /* Adjust as needed */
+  justify-content: space-between;
 }
 
-/* Product card styling - already in your code */
-.product-card-by-ralph2 {
-  flex: 0 0 auto;
-  background: #d7d7d7;
-  padding: 15px;
-  width: 358px;
-  height: 578.79px;
+.social-icons {
+  padding: 90px 15px var(--corner-large-increased, 20px) 19px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-shrink: 0;
+  width: 227px;
   position: relative;
-  border-radius: 10px;
 }
 
-/* Scrollbar styling */
-.scroll-wrapper::-webkit-scrollbar {
-  height: 10px;
+.buttons-icon {
+  border-radius: 4px;
+  padding: 8px;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  position: relative;
 }
 
-.scroll-wrapper::-webkit-scrollbar-thumb {
+.icon {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  overflow: visible;
+}
+
+.checkout {
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-width: 1px;
+  flex-shrink: 0;
+  width: 1000px;
+  height: 135px;
+  position: relative;
+}
+
+.checkout-button {
   background: #a51d21;
-  border-radius: 10px;
+  border-radius: 45px;
+  width: 115px;
+  height: 25px;
+  position: absolute;
+  left: 875px;
+  top: 105px;
+  cursor: pointer;
 }
 
-.scroll-wrapper::-webkit-scrollbar-track {
-  background: #eee;
+.basket-alt-3 {
+  width: 36px;
+  height: 27px;
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  overflow: visible;
 }
 
-/* Category title styling */
-.category-title {
-  font-size: 32px;
+.checkout2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+  line-height: 150%;
   font-weight: 700;
-  margin-bottom: 20px;
-  color: #000;
-  padding-left: 20px;
+  position: absolute;
+  left: 38px;
+  top: -9px;
+  width: 90px;
+  height: 41px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.order-total {
+  color: rgba(0, 0, 0, 0.7);
+  text-align: left;
+  font-family: "UbuntuSans", sans-serif;
+  font-size: 20px;
+  line-height: 150%;
+  font-weight: 500;
+  position: absolute;
+  left: 600px;
+  top: 105px;
+  width: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.cart-container {
+  position: absolute;
+  left: 11px;
+  top: 2px;
+  width: 980px;
+  height: 100px;
+}
+
+.cart-items-wrapper {
+  max-height: 80px;
+  overflow-y: auto;
+  margin-top: 5px;
+}
+
+.cart-items-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cart-items-wrapper::-webkit-scrollbar-thumb {
+  background: #a51d21;
+  border-radius: 3px;
+}
+
+.cart-items-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.x-mug-2-cup-n-tshirt-xxx {
+  padding-right: 5px;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: "Inter-Italic", sans-serif;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.cart-item {
+  position: relative;
+  padding-right: 25px;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.remove-item {
+  position: absolute;
+  right: 0;
+  color: #a51d21;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0 5px;
+}
+
+.remove-item:hover {
+  color: #ff0000;
+  background: rgba(0,0,0,0.05);
+  border-radius: 50%;
+}
+
+/* ===== Responsive Styles ===== */
+@media (max-width: 768px) {
+  .body {
+    padding: 0px 20px;
+  }
+  
+  .scrollable-row {
+    min-height: 550px;
+  }
+  
+  .product-card-by-ralph2 {
+    width: 280px;
+    height: 500px;
+  }
+  
+  .product-card-by-ralph2 img {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .navigation-footer {
+    height: 120px;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .checkout {
+    width: 100%;
+    height: auto;
+  }
+  
+  .cart-items-wrapper {
+    max-height: 60px;
+  }
+  
+  .checkout-button {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin: 10px auto;
+  }
+  
+  .order-total {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin: 5px 0;
+    width: auto;
+  }
+  
+  .cart-container {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: auto;
+  }
 }

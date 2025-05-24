@@ -46,6 +46,10 @@ def shop():
 
     return render_template("shop.html", categorized_products=categorized, total=total)
 
+@app.route("/about")
+def about():
+    return render_template("about.html")  # Make sure you have about.html in templates/
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
