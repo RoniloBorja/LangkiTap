@@ -1,68 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>LangkiTap - University Merchandise</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LangkiTap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
+  <div class="shop-ver-4-3">
+    <div class="header">
+      <div class="header-with-image bg-header">
+        <div class="title-with-button">
+          <div class="page-title">
+            <div class="langki-tap">LangkiTap</div>
+            <div class="your-one-tap-shop-for-university-merchandise">Your one-tap shop for university merchandise</div>
+          </div>
+          <a class="button" href="{{ url_for('shop') }}"><div class="view-catalog">View Catalog</div></a>
+        </div>
+        <div class="navigation">
+          <div class="items">
+            <a class="home" href="{{ url_for('home') }}">Home</a>
+            <a class="catalog" href="{{ url_for('shop') }}">Catalog</a>
+            <a class="about-us" href="{{ url_for('about') }}">About Us</a>
+            <a class="button2" href="{{ url_for('login') }}"><div class="login">Login</div></a>
+          </div>
+          <div class="langki-tap2">LangkiTap</div>
+        </div>
+      </div>
+    </div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">LangkiTap</div>
-        <ul class="nav-links">
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('shop') }}">Catalog</a></li>
-            <li><a href="#">About Us</a></li>
-            {% if session.admin or session.user %}
-            <li class="user-menu">
-                <div class="user-icon">👤</div>
-                <div class="user-dropdown">
-                    <span>User</span>
-                    <a href="{{ url_for('logout') }}">Logout</a>
+    <div class="body">
+      <div class="key-points">
+        <div class="subframe-1">
+          <div class="text">
+            <div class="quality-apparel-and-goods">Quality Apparel and Goods</div>
+            <div class="from-t-shirts-caps-pens-jackets-and-more-made-with-quality-that-will-last">
+              From T-shirts, caps, pens, jackets, and more, made with quality that will last.
+            </div>
+            <a class="button3" href="{{ url_for('shop') }}"><div class="view-catalog">View Catalog</div></a>
+            <a class="button4" href="{{ url_for('about') }}"><div class="find-out-more">Find out more</div></a>
+          </div>
+          <div class="image bg-image0">
+            <img class="image-4" src="{{ url_for('static', filename='image-40.png') }}" />
+          </div>
+        </div>
+        <div class="subframe-2">
+          <div class="image2 bg-image1">
+            <img class="image-5" src="{{ url_for('static', filename='image-50.png') }}" />
+          </div>
+          <div class="text2">
+            <a class="button5" href="{{ url_for('shop') }}"><div class="order-now">Order now</div></a>
+            <a class="button6" href="{{ url_for('about') }}"><div class="find-out-more">Find out more</div></a>
+            <div class="pick-up-your-orders-at-the-langkit-university-shop">
+              Pick up your orders at the Langkit University Shop
+            </div>
+            <div class="fast-easy-pick-up">Fast &amp; Easy Pick-up</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="new-arrivals">
+        <div class="new-arrivals2">New Arrivals</div>
+        <div class="arrivals-frame">
+          <div class="arrival-1">
+            <div class="card-big">
+              <div class="image3 bg-image2">
+                <img class="image-6" src="{{ url_for('static', filename='image-60.png') }}" />
+              </div>
+              <div class="copy">
+                <div class="featured-product">Featured product</div>
+                <div class="description-of-featured-product">Description of featured product</div>
+                <div class="_10-99">$10.99</div>
+              </div>
+            </div>
+          </div>
+          <div class="arrivals-23">
+            <div class="card-list">
+              <div class="arrival-2">
+                <div class="image4 bg-image3">
+                  <img class="image5" src="{{ url_for('static', filename='image-70.png') }}" />
                 </div>
-            </li>
-            {% else %}
-            <li><a href="{{ url_for('login') }}"><button class="login-btn">Login</button></a></li>
-            {% endif %}
-       </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-text">
-            <h1>LangkiTap</h1>
-            <p>Your one-tap shop for university merchandise</p>
-            <a href="{{ url_for('shop') }}">Visit Shop</a>
+                <div class="copy">
+                  <div class="product">Product</div>
+                  <div class="description-of-top-product">Description of top product</div>
+                  <div class="_10-99">$10.99</div>
+                </div>
+              </div>
+              <div class="arrival-3">
+                <div class="image4 bg-image5">
+                  <img class="image-8" src="{{ url_for('static', filename='image-80.png') }}" />
+                </div>
+                <div class="copy">
+                  <div class="product">Product</div>
+                  <div class="description-of-lower-product">Description of lower product</div>
+                  <div class="_10-99">$10.99</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </header>
+      </div>
+    </div>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="feature">
-            <div class="text">
-                <h2>Quality Apparel and Goods</h2>
-                <p>From T-shirts, caps, pens, jackets, and more, made with quality that will last.</p>
-                <a href="#" class="btn red">View Catalog</a>
-                <a href="#" class="btn yellow">Find out more</a>
-            </div>
-            <div class="image">
-                <img src="{{ url_for('static', filename='img1.jpg') }}" alt="Merchandise image 1">
-            </div>
+    <div class="footer">
+      <div class="navigation-footer">
+        <div class="items2">
+          <div class="topic">Topic</div>
+          <div class="page">Page</div>
+          <div class="page">Page</div>
+          <div class="page">Page</div>
         </div>
-
-        <div class="feature reverse">
-            <div class="image">
-                <img src="{{ url_for('static', filename='img2.jpg') }}" alt="Merchandise image 2">
-            </div>
-            <div class="text">
-                <h2>Fast & Easy Pick-up</h2>
-                <p>Pick up your orders at the Langkit University Shop</p>
-                <a href="#" class="btn red">Order now</a>
-                <a href="#" class="btn yellow">Find out more</a>
-            </div>
+        <div class="items3">
+          <div class="topic">Topic</div>
+          <div class="page">Page</div>
+          <div class="page">Page</div>
+          <div class="page">Page</div>
         </div>
-    </section>
-
+        <div class="items4">
+          <div class="topic">Topic</div>
+          <div class="page">Page</div>
+          <div class="page">Page</div>
+          <div class="page">Page</div>
+        </div>
+        <div class="site-name">Site name</div>
+        <div class="social-icons">
+          <div class="buttons-icon"><img class="icon" src="{{ url_for('static', filename='icon0.svg') }}" /></div>
+          <div class="buttons-icon"><img class="icon2" src="{{ url_for('static', filename='icon1.svg') }}" /></div>
+          <div class="buttons-icon"><img class="icon3" src="{{ url_for('static', filename='icon2.svg') }}" /></div>
+          <div class="buttons-icon"><img class="icon4" src="{{ url_for('static', filename='icon3.svg') }}" /></div>
+        </div>
+        <div class="divider"></div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
