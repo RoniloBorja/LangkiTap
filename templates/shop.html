@@ -4,119 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LangkiTap Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
-  <style>
-    /* Global Styles */
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    
-    .page-container {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    
-    .main-content {
-      flex: 1;
-      padding-bottom: 20px; /* Space above footer */
-    }
-
-    /* Category Styles */
-    .category-section {
-      width: 100%;
-      margin-bottom: 60px;
-    }
-
-    .category-title {
-      font-size: 32px;
-      font-weight: 700;
-      color: #000;
-      padding-left: 20px;
-      margin-bottom: 20px;
-    }
-
-    .scroll-wrapper {
-      width: 100%;
-      overflow-x: auto;
-      padding-bottom: 15px;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .scrollable-row {
-      display: flex;
-      gap: 20px;
-      width: max-content;
-      padding: 10px 20px;
-    }
-
-    /* Product Card Styles */
-    .product-card-by-ralph2 {
-      flex: 0 0 auto;
-      background: #d7d7d7;
-      padding: 15px;
-      width: 358px;
-      height: 578.79px;
-      border-radius: 10px;
-    }
-
-    .product-card-by-ralph2 img {
-      width: 328px;
-      height: 328px;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-
-    .frame-1321317465 {
-      margin-top: 10px;
-    }
-
-    .long-sleeved-shirt,
-    .crimson-fade,
-    ._399 {
-      font-family: "Inter-Medium", sans-serif;
-      font-size: 24px;
-      font-weight: 500;
-      margin: 5px 0;
-    }
-
-    .add-to-cart {
-      color: #a51d21;
-      font-size: 20px;
-      font-weight: 600;
-      margin-top: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    /* Footer Styles */
-    .navigation-footer {
-      background: #ffffff;
-      padding: 20px 15px;
-      box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      bottom: 0;
-      z-index: 100;
-      width: 100%;
-    }
-
-    /* Scrollbar styling */
-    .scroll-wrapper::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .scroll-wrapper::-webkit-scrollbar-thumb {
-      background: #a51d21;
-      border-radius: 4px;
-    }
-
-    .scroll-wrapper::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 4px;
-    }
-  </style>
 </head>
 <body>
   <div class="page-container">
@@ -179,8 +72,12 @@
           <div class="checkout2">Checkout</div>
         </div>
         <div class="order-total">Order total: $<span id="total-price">0.00</span></div>
-        <div class="x-mug-2-cup-n-tshirt-xxx" id="cart-items">
-          Your cart is empty
+        <div class="cart-container">
+          <div class="cart-items-wrapper">
+            <div class="x-mug-2-cup-n-tshirt-xxx" id="cart-items">
+              Your cart is empty
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -190,55 +87,56 @@
     var cart = [];
     var total = 0;
 
-      function addToCart(buttonElement) {
-    var id = buttonElement.getAttribute('data-id');
-    var name = buttonElement.getAttribute('data-name');
-    var price = parseFloat(buttonElement.getAttribute('data-price'));
-    
-    cart.push({id: id, name: name, price: price});
-    total += price;
-    
-    document.getElementById('total-price').textContent = total.toFixed(2);
-    updateCartDisplay();
-    
-    // Visual feedback
-    buttonElement.textContent = '✓ Added';
-    buttonElement.style.color = 'green';
-    setTimeout(function() {
-      buttonElement.textContent = '+ Add to cart';
-      buttonElement.style.color = '#a51d21';
-    }, 1000);
-  }
-
-  function updateCartDisplay() {
-    var cartItemsElement = document.getElementById('cart-items');
-    
-    if (cart.length === 0) {
-      cartItemsElement.innerHTML = 'Your cart is empty';
-      return;
-    }
-    
-    var itemsHTML = '';
-    for (var i = 0; i < cart.length; i++) {
-      itemsHTML += `
-        <div class="cart-item" data-index="${i}">
-          ${cart[i].name} - $${cart[i].price.toFixed(2)}
-          <span class="remove-item" onclick="removeFromCart(${i})">✕</span>
-        </div>
-      `;
-    }
-    
-    cartItemsElement.innerHTML = itemsHTML;
-  }
-
-  function removeFromCart(index) {
-    if (index >= 0 && index < cart.length) {
-      total -= cart[index].price;
+    function addToCart(buttonElement) {
+      var id = buttonElement.getAttribute('data-id');
+      var name = buttonElement.getAttribute('data-name');
+      var price = parseFloat(buttonElement.getAttribute('data-price'));
+      
+      cart.push({id: id, name: name, price: price});
+      total += price;
+      
       document.getElementById('total-price').textContent = total.toFixed(2);
-      cart.splice(index, 1);
       updateCartDisplay();
+      
+      buttonElement.textContent = '✓ Added';
+      buttonElement.style.color = 'green';
+      buttonElement.style.fontWeight = 'bold';
+      setTimeout(function() {
+        buttonElement.textContent = '+ Add to cart';
+        buttonElement.style.color = '#a51d21';
+        buttonElement.style.fontWeight = 'normal';
+      }, 1000);
     }
-  }
+
+    function updateCartDisplay() {
+      var cartItemsElement = document.getElementById('cart-items');
+      
+      if (cart.length === 0) {
+        cartItemsElement.innerHTML = 'Your cart is empty';
+        return;
+      }
+      
+      var itemsHTML = '';
+      for (var i = 0; i < cart.length; i++) {
+        itemsHTML += `
+          <div class="cart-item" data-index="${i}">
+            ${cart[i].name} - $${cart[i].price.toFixed(2)}
+            <span class="remove-item" onclick="removeFromCart(${i})">✕</span>
+          </div>
+        `;
+      }
+      
+      cartItemsElement.innerHTML = itemsHTML;
+    }
+
+    function removeFromCart(index) {
+      if (index >= 0 && index < cart.length) {
+        total -= cart[index].price;
+        document.getElementById('total-price').textContent = total.toFixed(2);
+        cart.splice(index, 1);
+        updateCartDisplay();
+      }
+    }
 
     function checkout() {
       if (cart.length === 0) {
@@ -249,7 +147,6 @@
       var itemNames = cart.map(function(item) {
         return item.name;
       }).join(', ');
-      
       alert('Checkout complete! Total: $' + total.toFixed(2) + '\nItems: ' + itemNames);
       
       cart = [];
