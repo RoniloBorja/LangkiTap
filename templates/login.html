@@ -1,82 +1,163 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin Login - LangkiTap</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <style>
-        /* Keep existing login styles */
-        .login-container {
-            max-width: 400px;
-            margin: 100px auto;
-            padding: 2rem;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-            text-align: center;
-        }
-
-        .login-container input {
-            width: 90%;
-            padding: 0.5rem;
-            margin: 0.5rem 0;
-        }
-
-        .login-container button {
-            padding: 0.6rem 1.2rem;
-            background-color: #b70000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .error {
-            color: red;
-            margin-bottom: 1rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - LangkiTap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='loginstyle.css') }}">
+  <style>
+    .error-message {
+      color: #ff3333;
+      font-family: var(--small-text-font-family, "Inter-Medium", sans-serif);
+      font-size: var(--small-text-font-size, 16px);
+      margin-bottom: 16px;
+    }
+    
+    .demo-accounts {
+      margin-top: 24px;
+      color: #454545;
+      font-family: var(--small-text-font-family, "Inter-Medium", sans-serif);
+      font-size: var(--small-text-font-size, 16px);
+      line-height: 1.5;
+    }
+    
+    .demo-accounts strong {
+      color: #a51d21;
+    }
+    
+    /* Make form inputs functional */
+    .field, .field2 {
+      width: 100%;
+    }
+    
+    .field input, .field2 input {
+      width: 100%;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      color: #191717;
+    }
+    
+    .field input::placeholder, .field2 input::placeholder {
+      color: #828282;
+    }
+    
+    /* Make submit button clickable */
+    .submit {
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .submit:hover {
+      background-color: #8a191d;
+    }
+    
+    /* Make create account link clickable */
+    .don-t-have-an-account2 {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <!-- Red Header -->
-    <nav class="navbar">
-        <div class="logo">LangkiTap</div>
-        <ul class="nav-links">
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('shop') }}">Catalog</a></li>
-            <li><a href="#">About Us</a></li>
-            {% if session.admin or session.user %}
-            <li class="user-menu">
-                <div class="user-icon">👤</div>
-                <div class="user-dropdown">
-                    <span>User</span>
-                    <a href="{{ url_for('logout') }}">Logout</a>
-                </div>
-            </li>
-            {% else %}
-            <li><a href="{{ url_for('login') }}"><button class="login-btn">Login</button></a></li>
-            {% endif %}
-        </ul>
-    </nav>
-
-    <!-- Login Form -->
-    <div class="login-container">
-        <h2>Admin Login</h2>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <div class="error">{{ messages[0] }}</div>
-            {% endif %}
-        {% endwith %}
-        <form method="POST">
-            <label>Username:</label><br>
-            <input type="text" name="username" required><br><br>
-            <label>Password:</label><br>
-            <input type="password" name="password" required><br><br>
-            <button type="submit">Login</button>
-        </form>
-        <div style="margin-top: 1rem;">
-            <p>Demo Accounts:</p>
-            <p>Admin: admin/1234<br>User: user/4321</p>
+  <div class="login-langkit-ver-2-v-4-3">
+    <div class="navigation-bar">
+      <div class="langki-tap">LangkiTap</div>
+      <div class="items">
+        <div class="home"><a href="{{ url_for('home') }}">Home</a></div>
+        <div class="catalog"><a href="{{ url_for('shop') }}">Catalog</a></div>
+        <div class="about-us"><a href="{{ url_for('about') }}">About Us</a></div>
+        {% if session.admin or session.user %}
+        <div class="button">
+          <div class="login"><a href="{{ url_for('logout') }}">Logout</a></div>
         </div>
+        {% else %}
+        <div class="button">
+          <div class="login">Login</div>
+        </div>
+        {% endif %}
+      </div>
     </div>
+    <div class="body">
+      <div class="title">
+        <a href="{{ url_for('home') }}"><img class="backbutton" src="{{ url_for('static', filename='backbutton0.svg') }}" /></a>
+        <div class="login-title">
+          <div class="login2">Login</div>
+          <img class="image-removebg-preview-2-1" src="{{ url_for('static', filename='image-removebg-preview-2-10.png') }}" />
+        </div>
+      </div>
+      <div class="login-field">
+        <form method="POST" class="form">
+          {% if error %}
+            <div class="error-message">{{ error }}</div>
+          {% endif %}
+          
+          <div class="input-email">
+            <div class="email-address">Username</div>
+            <div class="field">
+              <input type="text" name="username" placeholder="Enter your username (admin/user)" required>
+            </div>
+          </div>
+          <div class="input-password">
+            <div class="password">Password</div>
+            <div class="field2">
+              <input type="password" name="password" placeholder="Enter your password (1234/4321)" required>
+            </div>
+          </div>
+          <div class="don-t-have-an-account">
+            <div class="don-t-have-an-account2">
+              Don't have an account? Create one!
+            </div>
+          </div>
+              <div class="submit" onclick="document.forms[0].submit()">
+                <div class="submit2">Submit</div>
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="navigation-footer">
+      <div class="items2">
+        <div class="topic">Topic</div>
+        <div class="page">Page</div>
+        <div class="page">Page</div>
+        <div class="page">Page</div>
+      </div>
+      <div class="items3">
+        <div class="topic">Topic</div>
+        <div class="page">Page</div>
+        <div class="page">Page</div>
+        <div class="page">Page</div>
+      </div>
+      <div class="items4">
+        <div class="topic">Topic</div>
+        <div class="page">Page</div>
+        <div class="page">Page</div>
+        <div class="page">Page</div>
+      </div>
+      <div class="social-icons">
+        <div class="buttons-icon">
+          <img class="icon" src="{{ url_for('static', filename='icon0.svg') }}" />
+        </div>
+        <div class="buttons-icon">
+          <img class="icon2" src="{{ url_for('static', filename='icon1.svg') }}" />
+        </div>
+        <div class="buttons-icon">
+          <img class="icon3" src="{{ url_for('static', filename='icon2.svg') }}" />
+        </div>
+        <div class="buttons-icon">
+          <img class="icon4" src="{{ url_for('static', filename='icon3.svg') }}" />
+        </div>
+      </div>
+      <div class="langki-tap2">LangkiTap</div>
+      <div class="divider"></div>
+    </div>
+  </div>
 </body>
 </html>

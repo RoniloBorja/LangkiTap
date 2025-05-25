@@ -15,22 +15,42 @@
   <div class="page-container">
     <div class="main-content">
       <div class="user-catalog-v-4-3">
-        <div class="header-and-title">
-          <div class="navigation">
-            <div class="items">
-              <a class="home" href="{{ url_for('home') }}">Home</a>
-              <a class="catalog2" href="{{ url_for('shop') }}">Catalog</a>
-              <a class="about-us" href="{{ url_for('about') }}">About Us</a>
-              <div class="button">
-                <a class="login" href="{{ url_for('login') }}">Login</a>
-              </div>
-            </div>
-            <div class="langki-tap">LangkiTap</div>
+  <!-- Header -->
+  <div class="header-and-title">
+    <div class="navigation">
+      <div class="items">
+        <a class="home" href="{{ url_for('home') }}">Home</a>
+        <a class="catalog2" href="{{ url_for('shop') }}">Catalog</a>
+        <a class="about-us" href="{{ url_for('about') }}">About Us</a>
+        
+        {% if session.admin or session.user %}
+        <div class="user-menu">
+          <div class="user-button">
+            {{ 'Admin' if session.admin else 'User' }} ▼
+          </div>
+          <div class="dropdown-content">
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% if session.admin %}
+            <a href="{{ url_for('admin_page') }}">Admin Panel</a>
+            <a href="{{ url_for('admin_catalog') }}">Manage Catalog</a>
+            {% endif %}
+            <a href="#">Profile</a>
           </div>
         </div>
+        {% else %}
+        <div class="button">
+          <a class="login" href="{{ url_for('login') }}">Login</a>
+        </div>
+        {% endif %}
+      </div>
+      <div class="langki-tap">LangkiTap</div>
+    </div>
+  </div>
+</div>
 
         <div class="catalog">Catalog</div>
 
+        <!-- Body -->
         <div class="body">
           {% for category, items in categorized_products.items() %}
           <div class="category-section">
@@ -38,12 +58,13 @@
             <div class="scroll-wrapper">
               <div class="scrollable-row">
                 {% for item in items %}
+                <!-- Product Card-->
                 <div class="product-card-by-ralph2">
                   <img src="{{ url_for('static', filename='uploads/' + item.image) if item.image else url_for('static', filename='image_placeholder.png') }}">
                   <div class="frame-1321317465">
-                    <div class="long-sleeved-shirt">{{ item.name }}</div>
-                    <div class="crimson-fade">{{ item.description }}</div>
-                    <div class="_399">${{ "%.2f"|format(item.price|float) }}</div>
+                    <div class="product-name">{{ item.name }}</div>
+                    <div class="product-desc">{{ item.description }}</div>
+                    <div class="product-price">${{ "%.2f"|format(item.price|float) }}</div>
                     <div class="add-to-cart" 
                          data-id="{{ item.id }}"
                          data-name="{{ item.name }}"
@@ -60,6 +81,7 @@
       </div>
     </div>
 
+    <!-- Footer and Checkout Container -->
     <div class="navigation-footer">
       <div class="social-icons">
         {% for i in range(4) %}

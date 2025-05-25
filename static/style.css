@@ -124,23 +124,42 @@ background: url("header-with-image0.png") center center;
   align-items: center;
   justify-content: flex-start;
   flex-shrink: 0;
+  transition: all 0.5s ease;
   position: relative;
-  box-shadow: var(
-    --button-shadow-box-shadow,
-    0px 1px 2px 0px rgba(0, 0, 0, 0.05)
-  );
-transition: background 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
+  border: none; /* This removes the border */
+  outline: none; /* Removes the focus outline (optional) */
 }
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, 
+    #ff0000, #ff7300, #fffb00, #48ff00, 
+    #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  background-size: 400%;
+  opacity: 0;
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.button:hover::before {
+  opacity: 1;
+  animation: rainbow 8s linear infinite;
+}
+
 .button:hover {
-  background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
-  background-size: 1400% 1400%;
-  animation: rainbow 2s ease infinite;
   color: white;
+  box-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
+
 @keyframes rainbow {
   0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  100% { background-position: 400% 50%; }
 }
 .view-catalog {
   color: #ffffff;
