@@ -74,15 +74,9 @@
         <div class="home"><a href="{{ url_for('home') }}">Home</a></div>
         <div class="catalog"><a href="{{ url_for('shop') }}">Catalog</a></div>
         <div class="about-us"><a href="{{ url_for('about') }}">About Us</a></div>
-        {% if session.admin or session.user %}
         <div class="button">
-          <div class="login"><a href="{{ url_for('logout') }}">Logout</a></div>
+          <div class="login"><a href="{{ url_for('register') }}">Register</a></div>
         </div>
-        {% else %}
-        <div class="button">
-          <div class="login">Login</div>
-        </div>
-        {% endif %}
       </div>
     </div>
     <div class="body">

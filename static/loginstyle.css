@@ -181,6 +181,17 @@ html, body {
   translate: -50%;
   top: 181px;
 }
+.register-title {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  width: 285px;
+  position: absolute;
+  left: 48%;
+  translate: -50%;
+  top: 100px;
+}
 .login2 {
   color: #a51d21;
   text-align: left;
@@ -195,6 +206,14 @@ html, body {
   margin: 0 0 0 -1px;
   flex: 1;
   height: 112px;
+  position: relative;
+  object-fit: cover;
+  aspect-ratio: 107/112;
+}
+.alabmiming {
+  margin: 0 0 0 -1px;
+  flex: 0;
+  height: 200px;
   position: relative;
   object-fit: cover;
   aspect-ratio: 107/112;
