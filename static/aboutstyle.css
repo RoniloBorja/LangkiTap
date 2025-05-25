@@ -250,7 +250,6 @@ html, body {
   align-items: flex-start;
   justify-content: center;
   flex-shrink: 0;
-  width: 1442px;
   height: 535px;
   position: relative;
   object-fit: cover;
@@ -264,7 +263,6 @@ html, body {
   align-items: flex-start;
   justify-content: flex-start;
   flex-shrink: 0;
-  width: 1442px;
   height: 90px;
   position: relative;
 }
@@ -472,4 +470,24 @@ html, body {
   top: 1px;
   transform-origin: 0 0;
   transform: rotate(0deg) scale(1, 1);
+}
+
+.twin-brush-pics {
+  height: 517px;
+  position: absolute;
+  right: 35px;
+  top: 67px;
+  object-fit: cover;
+  aspect-ratio: 646.54/517;
+  margin-left: 100px;
+  z-index: 2;
+}
+
+.langkit-container {
+  width: 101px;
+  height: 1179px;
+  position: absolute;
+  right: 0px;
+  top: 355px;
+  z-index: 1;
 }
