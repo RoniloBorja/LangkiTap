@@ -39,11 +39,13 @@ class Product(db.Model):
 class CustomerOrder(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    created_at = db.Column(
+        db.DateTime,
+        default=lambda: datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8)))
+    )
     total_amount = db.Column(db.Float)
     status = db.Column(db.String(20), default='pending')
     items = db.relationship('OrderItem', backref='order', lazy=True)
-
 # Order item model
 class OrderItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -163,6 +165,7 @@ def admin_page():
     orders = CustomerOrder.query.order_by(CustomerOrder.created_at.desc()).limit(10).all()
     users = {u.id: u.username for u in User.query.all()}
     return render_template("admin.html", orders=orders, users=users)
+
 @app.route('/update_order_status/<int:order_id>', methods=['POST'])
 def update_order_status(order_id):
     if not session.get("admin"):
@@ -173,6 +176,25 @@ def update_order_status(order_id):
     order.status = data['status']
     db.session.commit()
     return jsonify({'success': True})
+
+@app.route('/delete_order/<int:order_id>', methods=['POST'])
+def delete_order(order_id):
+    if not session.get("admin"):
+        return jsonify({'success': False, 'message': 'Unauthorized'})
+    
+    try:
+        order = CustomerOrder.query.get_or_404(order_id)
+
+        # Delete related items first
+        OrderItem.query.filter_by(order_id=order.id).delete()
+
+        db.session.delete(order)
+        db.session.commit()
+        return jsonify({'success': True})
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'success': False, 'message': str(e)})
+
 
 @app.route("/admin/catalog")
 def admin_catalog():
