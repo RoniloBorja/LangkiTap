@@ -403,13 +403,19 @@ html, body {
   position: relative;
 }
 
-.icon {
-  width: 24px;
-  height: 24px;
+.msu-iit-langkit-university-shop {
+  color: #000000;
+  text-align: left;
+  font-family: "Outfit", sans-serif;
+  font-size: 24px;
+  line-height: 150%;
+  font-weight: 400;
   position: absolute;
-  left: 8px;
-  top: 8px;
-  overflow: visible;
+  left: 60px;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .checkout {
