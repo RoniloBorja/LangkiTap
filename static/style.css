@@ -1,3 +1,97 @@
+/* Button styling */
+.navigation .button {
+    border-radius: 8px;
+    border: 2px solid #ffffff;
+    padding: 14px 24px;
+}
+
+.navigation .button a {
+    font-size: 20px;
+}
+/* User Menu - Fixed Styles */
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.user-button {
+  border: 2px solid white;
+  border-radius: 8px;
+  padding: 14px 24px;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 100%;
+}
+
+/* Dropdown - Fixed Visibility */
+.dropdown-content {
+  display: none; /* Hidden by default */
+  position: absolute;
+  right: 0;
+  top: calc(100% - 1px); /* Seamless connection */
+  background: white;
+  min-width: 200px;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 101; /* Above nav bar */
+}
+
+/* Dropdown Links - Always Visible Text */
+.dropdown-content a {
+  display: block;
+  padding: 12px 16px;
+  color: #333 !important; /* Force visible color */
+  text-decoration: none;
+  background: white;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+}
+
+.dropdown-content a:hover {
+  background: #f0f0f0;
+  color: #a51d21 !important;
+}
+
+/* Show Dropdown */
+.user-menu:hover .dropdown-content {
+  display: block;
+}
+
+
+/* DROPDOWN SPECIFIC OVERRIDES */
+/* Target only dropdown links specifically */
+.user-menu .dropdown-content a,
+.user-menu .dropdown-content a:link,
+.user-menu .dropdown-content a:visited,
+.user-menu .dropdown-content a:hover,
+.user-menu .dropdown-content a:active,
+.user-menu .dropdown-content a:focus {
+  color: #333 !important; /* Dark text for dropdown */
+  font-size: 14px !important; /* Smaller font for dropdown */
+  text-decoration: none !important;
+  background: white !important;
+  display: block; /* Override flex from navigation */
+  padding: 10px 16px;
+}
+
+/* Dropdown hover state */
+.user-menu .dropdown-content a:hover {
+  background: #f5f5f5 !important;
+  color: #a51d21 !important; /* Your brand red */
+}
+
+/* Dropdown container */
+.user-menu .dropdown-content {
+  color: #333 !important; /* Text color for any non-link text */
+  font-size: 14px !important;
+  background: white !important;
+}
 
 /* Reset styles moved from index.html */
 a,
@@ -180,7 +274,6 @@ background: url("header-with-image0.png") center center;
   right: 0px;
   left: 0px;
   top: 0px;
-  overflow: hidden;
 }
 .items {
   display: flex;

@@ -22,15 +22,34 @@
           </div>
           <a class="button" href="{{ url_for('shop') }}"><div class="view-catalog">View Catalog</div></a>
         </div>
-        <div class="navigation">
-          <div class="items">
-            <a class="home" href="{{ url_for('home') }}">Home</a>
-            <a class="catalog" href="{{ url_for('shop') }}">Catalog</a>
-            <a class="about-us" href="{{ url_for('about') }}">About Us</a>
-            <a class="button2" href="{{ url_for('login') }}"><div class="login">Login</div></a>
-          </div>
-          <div class="langki-tap2">LangkiTap</div>
-        </div>
+                             <div class="navigation">
+                <div class="items">
+                  <a class="home" href="{{ url_for('home') }}">Home</a>
+                  <a class="catalog" href="{{ url_for('shop') }}">Catalog</a>
+                  <a class="about-us" href="{{ url_for('about') }}">About Us</a>
+                  
+                  {% if session.admin or session.user %}
+                  <div class="user-menu">
+                    <div class="user-button">
+                      {{ session.username if session.username else 'User' }} ▼
+                    </div>
+                    <div class="dropdown-content">
+                      <a href="{{ url_for('logout') }}">Logout</a>
+                      {% if session.admin %}
+                      <a href="{{ url_for('admin_page') }}">Admin Panel</a>
+                      <a href="{{ url_for('admin_catalog') }}">Manage Catalog</a>
+                      {% endif %}
+                      <a href="#">Profile</a>
+                    </div>
+                  </div>
+                  {% else %}
+                  <div class="button2">
+                    <a class="login" href="{{ url_for('login') }}">Login</a>
+                  </div>
+                  {% endif %}
+                </div>
+                <div class="langki-tap2">LangkiTap</div>
+              </div>
       </div>
     </div>
 

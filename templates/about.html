@@ -21,7 +21,7 @@
     {% if session.admin or session.user %}
     <div class="user-menu">
       <div class="user-button">
-        {{ 'Admin' if session.admin else 'User' }} ▼
+        {{ session.username if session.username else 'User' }} ▼
       </div>
       <div class="dropdown-content">
         <a href="{{ url_for('logout') }}">Logout</a>

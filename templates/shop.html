@@ -16,37 +16,37 @@
     <div class="main-content">
       <div class="user-catalog-v-4-3">
   <!-- Header -->
-  <div class="header-and-title">
-    <div class="navigation">
-      <div class="items">
-        <a class="home" href="{{ url_for('home') }}">Home</a>
-        <a class="catalog2" href="{{ url_for('shop') }}">Catalog</a>
-        <a class="about-us" href="{{ url_for('about') }}">About Us</a>
-        
-        {% if session.admin or session.user %}
-        <div class="user-menu">
-          <div class="user-button">
-            {{ 'Admin' if session.admin else 'User' }} ▼
+            <div class="header-and-title">
+              <div class="navigation">
+                <div class="items">
+                  <a class="home" href="{{ url_for('home') }}">Home</a>
+                  <a class="catalog2" href="{{ url_for('shop') }}">Catalog</a>
+                  <a class="about-us" href="{{ url_for('about') }}">About Us</a>
+                  
+                  {% if session.admin or session.user %}
+                  <div class="user-menu">
+                    <div class="user-button">
+                      {{ session.username if session.username else 'User' }} ▼
+                    </div>
+                    <div class="dropdown-content">
+                      <a href="{{ url_for('logout') }}">Logout</a>
+                      {% if session.admin %}
+                      <a href="{{ url_for('admin_page') }}">Admin Panel</a>
+                      <a href="{{ url_for('admin_catalog') }}">Manage Catalog</a>
+                      {% endif %}
+                      <a href="#">Profile</a>
+                    </div>
+                  </div>
+                  {% else %}
+                  <div class="button">
+                    <a class="login" href="{{ url_for('login') }}">Login</a>
+                  </div>
+                  {% endif %}
+                </div>
+                <div class="langki-tap">LangkiTap</div>
+              </div>
+            </div>
           </div>
-          <div class="dropdown-content">
-            <a href="{{ url_for('logout') }}">Logout</a>
-            {% if session.admin %}
-            <a href="{{ url_for('admin_page') }}">Admin Panel</a>
-            <a href="{{ url_for('admin_catalog') }}">Manage Catalog</a>
-            {% endif %}
-            <a href="#">Profile</a>
-          </div>
-        </div>
-        {% else %}
-        <div class="button">
-          <a class="login" href="{{ url_for('login') }}">Login</a>
-        </div>
-        {% endif %}
-      </div>
-      <div class="langki-tap">LangkiTap</div>
-    </div>
-  </div>
-</div>
 
         <div class="catalog">Catalog</div>
 
@@ -161,21 +161,46 @@
     }
 
     function checkout() {
-      if (cart.length === 0) {
+    if (cart.length === 0) {
         alert('Your cart is empty!');
         return;
-      }
-      
-      var itemNames = cart.map(function(item) {
-        return item.name;
-      }).join(', ');
-      alert('Checkout complete! Total: $' + total.toFixed(2) + '\nItems: ' + itemNames);
-      
-      cart = [];
-      total = 0;
-      updateCartDisplay();
-      document.getElementById('total-price').textContent = '0.00';
     }
+    
+    // Prepare order data
+    const orderData = {
+        items: cart.map(item => ({
+            product_id: item.id,
+            price: item.price,
+            quantity: 1  // You can implement quantity later
+        })),
+        total: total.toFixed(2)
+    };
+    
+    // Send to server
+    fetch('/checkout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Order placed successfully!');
+            cart = [];
+            total = 0;
+            updateCartDisplay();
+            document.getElementById('total-price').textContent = '0.00';
+        } else {
+            alert('Error: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Checkout failed!');
+    });
+}
   </script>
 </body>
 </html>
