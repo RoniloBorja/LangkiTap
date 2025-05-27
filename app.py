@@ -263,5 +263,19 @@ def delete_product(product_id):
     db.session.commit()
     return redirect(url_for("admin_catalog"))
 
+@app.route('/decrease_stock/<int:product_id>', methods=['POST'])
+def decrease_stock(product_id):
+    product = Product.query.get(product_id)
+    if not product:
+        return jsonify({'success': False, 'message': 'Product not found'})
+
+    if product.stock <= 0:
+        return jsonify({'success': False, 'message': 'Out of stock'})
+
+    product.stock -= 1
+    db.session.commit()
+    return jsonify({'success': True, 'remaining_stock': product.stock})
+
+
 if __name__ == "__main__":
     app.run(debug=True)

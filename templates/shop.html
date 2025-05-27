@@ -41,7 +41,8 @@
 
               <!-- 🛒 Cart Icon -->
               <div class="cart-nav-icon" onclick="toggleCart()">
-                🛒 Cart
+                <img src="{{ url_for('static', filename='cart-o.svg') }}" alt="Cart" class="cart-icon-img">
+                <span class="cart-text">Cart</span>
                 <span id="cart-count" class="cart-count-badge hidden">0</span>
               </div>
             </div>
@@ -68,11 +69,25 @@
                     </div>
 
                     <div class="product-price">₱{{ "%.2f"|format(item.price|float) }}</div>
-                    <div class="add-to-cart" 
-                         data-id="{{ item.id }}"
-                         data-name="{{ item.name }}"
-                         data-price="{{ item.price }}"
-                         onclick="addToCart(this)">+ Add to cart</div>
+                    <div class="product-stock" id="stock-{{ item.id }}">
+                      {% if item.stock > 0 %}
+                        Stock: {{ item.stock }}
+                      {% else %}
+                        <span style="color: red; font-weight: bold;">Out of Stock</span>
+                      {% endif %}
+                    </div>
+
+                    {% if item.stock > 0 %}
+                      <div class="add-to-cart"
+                          data-id="{{ item.id }}"
+                          data-name="{{ item.name }}"
+                          data-price="{{ item.price }}"
+                          onclick="addToCart(this)">+ Add to cart</div>
+                    {% else %}
+                      <div class="add-to-cart"
+                          style="color: gray; cursor: not-allowed;"
+                          onclick="alert('Out of stock')">Out of stock</div>
+                    {% endif %}
                   </div>
                 </div>
                 {% endfor %}
@@ -156,26 +171,50 @@
       document.getElementById('cart-popup').classList.toggle('hidden');
     }
 
-    function addToCart(buttonElement) {
+  function addToCart(buttonElement) {
   var id = buttonElement.getAttribute('data-id');
   var name = buttonElement.getAttribute('data-name');
   var price = parseFloat(buttonElement.getAttribute('data-price'));
 
-  cart.push({ id, name, price });
-  total += price;
+  fetch(`/decrease_stock/${id}`, {
+    method: 'POST'
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (!data.success) {
+      alert(data.message);
+      return;
+    }
 
-  document.getElementById('total-price').textContent = total.toFixed(2);
-  updateCartDisplay();
-  updateCartBadge();
+    cart.push({ id, name, price });
+    total += price;
+    document.getElementById('total-price').textContent = total.toFixed(2);
+    updateCartDisplay();
+    updateCartBadge();
 
-  buttonElement.textContent = '✓ Added';
-  buttonElement.style.color = 'green';
-  buttonElement.style.fontWeight = 'bold';
-  setTimeout(() => {
-    buttonElement.textContent = '+ Add to cart';
-    buttonElement.style.color = '#a51d21';
-    buttonElement.style.fontWeight = 'normal';
-  }, 1000);
+    const stockDiv = document.getElementById(`stock-${id}`);
+    if (data.remaining_stock > 0) {
+      stockDiv.textContent = `Stock: ${data.remaining_stock}`;
+    } else {
+      stockDiv.innerHTML = '<span style="color: red; font-weight: bold;">Out of Stock</span>';
+      buttonElement.textContent = 'Out of stock';
+      buttonElement.style.color = 'gray';
+      buttonElement.style.cursor = 'not-allowed';
+      buttonElement.onclick = () => alert('Out of stock');
+    }
+
+    buttonElement.textContent = '✓ Added';
+    buttonElement.style.color = 'green';
+    buttonElement.style.fontWeight = 'bold';
+
+    setTimeout(() => {
+      if (data.remaining_stock > 0) {
+        buttonElement.textContent = '+ Add to cart';
+        buttonElement.style.color = '#a51d21';
+        buttonElement.style.fontWeight = 'normal';
+      }
+    }, 1000);
+  });
 }
 
 function updateCartBadge() {
@@ -222,43 +261,48 @@ function updateCartBadge() {
     }
 
     function checkout() {
-      if (cart.length === 0) {
-        alert('Your cart is empty!');
-        return;
-      }
+  if (cart.length === 0) {
+    alert('Your cart is empty!');
+    return;
+  }
 
-      const orderData = {
-        items: cart.map(item => ({
-          product_id: item.id,
-          price: item.price,
-          quantity: 1
-        })),
-        total: total.toFixed(2)
-      };
+  const orderData = {
+    items: cart.map(item => ({
+      product_id: item.id,
+      price: item.price,
+      quantity: 1
+    })),
+    total: total.toFixed(2)
+  };
 
-      fetch('/checkout', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(orderData)
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          alert('Order placed successfully!');
-          cart = [];
-          total = 0;
-          updateCartDisplay();
-          document.getElementById('total-price').textContent = '0.00';
-          toggleCart();
-        } else {
-          alert('Error: ' + data.message);
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('Checkout failed!');
-      });
+  fetch('/checkout', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(orderData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert('Order placed successfully!');
+      cart = [];
+      total = 0;
+      updateCartDisplay();
+      document.getElementById('total-price').textContent = '0.00';
+      toggleCart();
+
+      // ✅ Clear cart badge
+      const badge = document.getElementById('cart-count');
+      badge.classList.add('hidden');
+      badge.textContent = '0';
+    } else {
+      alert('Error: ' + data.message);
     }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('Checkout failed!');
+  });
+}
   </script>
 </body>
 </html>
