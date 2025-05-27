@@ -375,6 +375,11 @@ background: url("header-with-image0.png") center center;
   align-items: center;
   justify-content: flex-start;
 }
+.langki-tap2 img.logo-img {
+  height: 65px;
+  width: auto;
+  object-fit: contain;
+}
 .body {
   display: flex;
   flex-direction: column;
