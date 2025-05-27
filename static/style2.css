@@ -353,6 +353,25 @@ html, body {
   margin: 10px 0;
 }
 
+.product-desc-scroll {
+  max-height: 100px; /* adjust height as needed */
+  overflow-y: auto;
+  margin-bottom: 10px;
+  padding-right: 5px;
+}
+
+.product-desc-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.product-desc-scroll::-webkit-scrollbar-thumb {
+  background: #a51d21;
+  border-radius: 4px;
+}
+
+.product-desc-scroll::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
 .add-to-cart {
   color: #a51d21;
   font-size: 20px;
@@ -370,39 +389,209 @@ html, body {
 }
 
 /* ===== Footer & Cart Styles ===== */
-.navigation-footer {
-  background: #ffffff;
-  padding: 0px;
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-  box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-  height: 140px;
+footer {
   display: flex;
-  justify-content: space-between;
-}
-
-.social-icons {
-  padding: 90px 15px var(--corner-large-increased, 20px) 19px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 150px;
+  align-items: left;
+  justify-content: flex-start;
+  align-self: stretch;
   flex-shrink: 0;
-  width: 227px;
   position: relative;
 }
-
+.navigation-footer {
+  background: #ffffff;
+  height: 264px;
+  position: relative;
+}
+.stuff1 {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-end;
+  justify-content: center;
+  width: 187px;
+  height: 70px;
+  position: absolute;
+  right: 541px;
+  top: 61px;
+}
+.contact-information {
+  color: #000000;
+  text-align: left;
+  font-family: var(--small-text-font-family, "Inter", sans-serif);
+  font-size: var(--small-text-font-size, 16px);
+  line-height: var(--small-text-line-height, 150%);
+  font-weight: var(--small-text-font-weight, 500);
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._0962-821-0848 {
+  color: #454545;
+  text-align: left;
+  font-family: var(--small-text-font-family, "Inter", sans-serif);
+  font-size: var(--small-text-font-size, 16px);
+  line-height: var(--small-text-line-height, 150%);
+  font-weight: var(--small-text-font-weight, 500);
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.stuff2 {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-end;
+  justify-content: center;
+  width: 175px;
+  position: absolute;
+  right: 331px;
+  top: 59px;
+}
+.category {
+  color: #000000;
+  text-align: left;
+  font-family: var(--small-text-font-family, "Inter", sans-serif);
+  font-size: var(--small-text-font-size, 16px);
+  line-height: var(--small-text-line-height, 150%);
+  font-weight: var(--small-text-font-weight, 500);
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.souvenir-shop-clothing-store-gift-shop {
+  color: #454545;
+  text-align: left;
+  font-family: var(--small-text-font-family, "Inter", sans-serif);
+  font-size: var(--small-text-font-size, 16px);
+  line-height: var(--small-text-line-height, 150%);
+  font-weight: var(--small-text-font-weight, 500);
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.stuff3 {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-end;
+  justify-content: center;
+  width: 187px;
+  position: absolute;
+  right: 120px;
+  top: 56px;
+}
+.location {
+  color: #000000;
+  text-align: left;
+  font-family: var(--small-text-font-family, "Inter", sans-serif);
+  font-size: var(--small-text-font-size, 16px);
+  line-height: var(--small-text-line-height, 150%);
+  font-weight: var(--small-text-font-weight, 500);
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.andres-bonifacio-ave-iligan-city-philippines-9200 {
+  color: #454545;
+  text-align: left;
+  font-family: var(--small-text-font-family, "Inter", sans-serif);
+  font-size: var(--small-text-font-size, 16px);
+  line-height: var(--small-text-line-height, 150%);
+  font-weight: var(--small-text-font-weight, 500);
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 .buttons-icon {
   border-radius: 4px;
   padding: 8px;
-  flex-shrink: 0;
   width: 40px;
   height: 40px;
-  position: relative;
+  position: absolute;
+  left: 60px;
+  top: 136px;
 }
-
+.icon {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  overflow: visible;
+}
+.langkituniversityshop {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 150%;
+  font-weight: 400;
+  text-decoration: underline;
+  position: absolute;
+  left: 39px;
+  top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.langkituniversityshop2 {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 150%;
+  font-weight: 400;
+  text-decoration: underline;
+  position: absolute;
+  left: 39px;
+  top: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.langkituniversityshop3 {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 150%;
+  font-weight: 400;
+  text-decoration: underline;
+  position: absolute;
+  left: 40px;
+  top: 77px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.divider {
+  margin-top: -1px;
+  /* border-style: solid; */
+  /* border-color: #ff0000; */
+  background-color: #ff0000;
+  /* border-width: 1px 0 0 0; */
+  width: 75%;
+  height: 1px;
+  position: absolute;
+  left: 12.5%;
+  /* right: 1px; */
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+}
 .msu-iit-langkit-university-shop {
   color: #000000;
   text-align: left;
@@ -412,10 +601,60 @@ html, body {
   font-weight: 400;
   position: absolute;
   left: 60px;
-  top: 10px;
+  top: 42px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+.frame-1321317494 {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 68px;
+  top: 208px;
+  overflow: visible;
+}
+.group-1 {
+  height: auto;
+  position: absolute;
+  left: 70px;
+  top: 176px;
+  overflow: visible;
+}
+.gift {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 509px;
+  top: 60px;
+}
+.vuesax-broken-gift {
+  height: auto;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: visible;
+}
+.frame-1321317496 {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 307px;
+  top: 56px;
+  overflow: visible;
+}
+.frame-1321317495 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+  justify-content: center;
+  width: 24px;
+  height: auto;
+  position: absolute;
+  right: 736px;
+  top: 66px;
+  overflow: visible;
 }
 
 .checkout {
@@ -467,20 +706,19 @@ html, body {
   justify-content: flex-start;
 }
 
-.order-total {
-  color: rgba(0, 0, 0, 0.7);
-  text-align: left;
-  font-family: "UbuntuSans", sans-serif;
-  font-size: 20px;
-  line-height: 150%;
-  font-weight: 500;
-  position: absolute;
-  left: 600px;
-  top: 105px;
-  width: 240px;
+.cart-summary {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.order-total {
+  font-size: 18px;
+  font-family: "Ubuntu Sans", sans-serif;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: left;
 }
 
 .cart-container {
@@ -602,4 +840,126 @@ html, body {
     width: 100%;
     height: auto;
   }
+}
+/* === Cart Popup Styles === */
+.cart-nav-icon {
+  color: white;
+  font-family: var(--small-text-font-family, "Inter", sans-serif);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.cart-nav-icon:hover {
+  transform: scale(1.2);
+}
+
+.cart-popup {
+  position: fixed;
+  top: 85px;
+  right: 0;
+  width: 350px;
+  max-height: 90vh;
+  background: #fff;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
+  z-index: 200;
+  transform: translateX(0);
+  transition: transform 0.3s ease-in-out;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.cart-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.order-total {
+  font-size: 18px;
+  font-family: "Ubuntu Sans", sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.cart-popup.hidden {
+  transform: translateX(100%);
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-cart {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #a51d21;
+}
+
+.checkout-btn {
+  background: #a51d21;
+  color: white;
+  font-family: "Outfit", sans-serif;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.checkout-btn:hover {
+  background: #90181c;
+}
+
+.cart-nav-icon {
+  position: relative;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.cart-nav-icon:hover {
+  transform: scale(1.2);
+}
+
+.cart-count-badge {
+  position: absolute;
+  top: -6px;
+  right: 0;
+  background: #ff3b3b;
+  color: white;
+  font-size: 12px;
+  font-family: "Inter", sans-serif;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes bump {
+  0% { transform: scale(1); }
+  10% { transform: scale(1.2); }
+  30% { transform: scale(0.95); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.cart-bump {
+  animation: bump 300ms ease-in-out;
 }
