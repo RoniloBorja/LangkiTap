@@ -923,21 +923,38 @@ footer {
 
 .cart-nav-icon {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0px;
   color: white;
   font-size: 24px;
+  font-family: "Inter", sans-serif;
   cursor: pointer;
   padding: 0 10px;
   transition: transform 0.2s ease-in-out;
 }
 
 .cart-nav-icon:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
+.cart-icon-img {
+  width: 40px;
+  height: 40px;
+}
+
+.cart-text {
+  font-weight: 500;
+  font-size: 22px;
+   font-family: "Inter", sans-serif;
+  color: white;
+}
+
+/* Badge Styles */
 .cart-count-badge {
   position: absolute;
   top: -6px;
-  right: 0;
+  right: -6px;
   background: #ff3b3b;
   color: white;
   font-size: 12px;
