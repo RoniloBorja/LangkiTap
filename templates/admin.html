@@ -59,7 +59,7 @@
                                 {% endfor %}
                             </ul>
                         </td>
-                        <td>${{ "%.2f"|format(order.total_amount) }}</td>
+                        <td>₱{{ "%.2f"|format(order.total_amount) }}</td>
                         <td>
                             <span class="status-badge {{ order.status }}">{{ order.status }}</span>
                         </td>
