@@ -30,7 +30,6 @@
                   <a href="{{ url_for('admin_page') }}">Admin Panel</a>
                   <a href="{{ url_for('admin_catalog') }}">Manage Catalog</a>
                   {% endif %}
-                  <a href="#">Profile</a>
                 </div>
               </div>
               {% else %}
@@ -254,14 +253,25 @@ function updateCartBadge() {
     }
 
     function removeFromCart(index) {
-      if (index >= 0 && index < cart.length) {
-        total -= cart[index].price;
-        document.getElementById('total-price').textContent = total.toFixed(2);
-        cart.splice(index, 1);
-        updateCartDisplay();
-        updateCartBadge();
-      }
-    }
+  if (index >= 0 && index < cart.length) {
+    const product = cart[index];
+    total -= product.price;
+    document.getElementById('total-price').textContent = total.toFixed(2);
+    cart.splice(index, 1);
+    updateCartDisplay();
+    updateCartBadge();
+
+    // Restore stock
+    fetch(`/increase_stock/${product.id}`, { method: 'POST' })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          const stockDiv = document.getElementById(`stock-${product.id}`);
+          stockDiv.textContent = `Stock: ${data.new_stock}`;
+        }
+      });
+  }
+}
 
     function checkout() {
   if (cart.length === 0) {

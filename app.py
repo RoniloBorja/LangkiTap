@@ -173,27 +173,46 @@ def update_order_status(order_id):
     
     data = request.get_json()
     order = CustomerOrder.query.get_or_404(order_id)
-    order.status = data['status']
+    old_status = order.status
+    new_status = data['status']
+
+    # ✅ Restore stock ONLY if switching to 'cancelled' from a status that is NOT 'completed' or 'cancelled'
+    if old_status not in ['cancelled', 'completed'] and new_status == 'cancelled':
+        for item in order.items:
+            product = Product.query.get(item.product_id)
+            if product:
+                product.stock += item.quantity
+
+    order.status = new_status
     db.session.commit()
     return jsonify({'success': True})
+
 
 @app.route('/delete_order/<int:order_id>', methods=['POST'])
 def delete_order(order_id):
     if not session.get("admin"):
         return jsonify({'success': False, 'message': 'Unauthorized'})
-    
+
     try:
         order = CustomerOrder.query.get_or_404(order_id)
 
-        # Delete related items first
-        OrderItem.query.filter_by(order_id=order.id).delete()
+        # ✅ Restore stock ONLY if it wasn't already restored (i.e., order is still 'pending')
+        if order.status == 'pending':
+            for item in order.items:
+                product = Product.query.get(item.product_id)
+                if product:
+                    product.stock += item.quantity
 
+        # Delete order items and the order itself
+        OrderItem.query.filter_by(order_id=order.id).delete()
         db.session.delete(order)
         db.session.commit()
         return jsonify({'success': True})
+
     except Exception as e:
         db.session.rollback()
         return jsonify({'success': False, 'message': str(e)})
+
 
 
 @app.route("/admin/catalog")
@@ -276,6 +295,15 @@ def decrease_stock(product_id):
     db.session.commit()
     return jsonify({'success': True, 'remaining_stock': product.stock})
 
+@app.route('/increase_stock/<int:product_id>', methods=['POST'])
+def increase_stock(product_id):
+    product = Product.query.get(product_id)
+    if not product:
+        return jsonify({'success': False, 'message': 'Product not found'})
+
+    product.stock += 1
+    db.session.commit()
+    return jsonify({'success': True, 'new_stock': product.stock})
 
 if __name__ == "__main__":
     app.run(debug=True)
