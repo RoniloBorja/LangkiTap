@@ -63,7 +63,7 @@ with app.app_context():
 
     # Create default users if not exist
     if not User.query.filter_by(username="admin").first():
-        db.session.add(User(username="admin", password="1234", is_admin=True))
+        db.session.add(User(username="admin", password="0123", is_admin=True))
     if not User.query.filter_by(username="user").first():
         db.session.add(User(username="user", password="4321", is_admin=False))
     db.session.commit()
