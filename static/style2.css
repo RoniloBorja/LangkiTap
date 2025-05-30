@@ -250,7 +250,8 @@ html, body {
 
 
 
-.langki-tap {
+.langki-tap,
+a.langki-tap {
   color: #ffffff;
   text-align: left;
   font-family: "Outfit", sans-serif;
@@ -265,8 +266,14 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  display: inline-flex;
+  text-decoration: none;
 }
-
+.langki-tap img.logo-img {
+  height: 65px;
+  width: auto;
+  object-fit: contain;
+}
 
 /* ===== Product Grid Styles ===== */
 .body {

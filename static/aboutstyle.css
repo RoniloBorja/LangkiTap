@@ -151,21 +151,26 @@ html, body {
   height: 85px;
   position: relative;
 }
-.langki-tap {
-   color: #ffffff;
-  text-align: left;
-  font-family: "Outfit", sans-serif;
+.langki-tap, a.langki-tap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0px; /* space between image and text */
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
   font-size: 48px;
-  line-height: 150%;
   font-weight: 700;
   position: absolute;
   left: 80px;
   top: -23px;
-  width: 231px;
   height: 132px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  white-space: nowrap;
+}
+
+.langki-tap img.logo-img {
+  height: 65px;
+  width: auto;
+  object-fit: contain;
 }
 .items {
  display: flex;
